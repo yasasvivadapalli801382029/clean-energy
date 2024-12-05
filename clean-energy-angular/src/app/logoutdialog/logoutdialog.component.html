@@ -1,0 +1,47 @@
+<!-- Dialog Title -->
+<h2
+  mat-dialog-title
+  *ngIf="data.action === 'Logout'"
+  id="dialog-title"
+>
+  {{ data.action }} Confirmation
+</h2>
+<h2
+  mat-dialog-title
+  *ngIf="data.action === 'User Information'"
+  id="dialog-title"
+>
+  {{ data.action }}
+</h2>
+
+<!-- Dialog Content -->
+<div
+  mat-dialog-content
+  id="dialog-content"
+  role="document"
+  aria-labelledby="dialog-title"
+>
+  <p *ngIf="data.action === 'Logout'">
+    Are you sure you want to {{ data.content }}?
+  </p>
+</div>
+
+<!-- Dialog Actions -->
+<div mat-dialog-actions>
+  <button
+    mat-button
+    mat-dialog-close
+    aria-label="Cancel the action and close the dialog"
+  >
+    Cancel
+  </button>
+  <button
+    mat-button
+    color="warn"
+    [mat-dialog-close]="true"
+    *ngIf="data.action !== 'User Information'"
+    aria-label="{{ data.action }}"
+  >
+    {{ data.action }}
+  </button>
+</div>

@@ -1,0 +1,25 @@
+<!-- reports.component.html -->
+<div class="reports-container" role="main">
+  <h1 id="geothermal-report-heading">Geothermal Energy Report</h1>
+  
+  <!-- Display loading message or error if data isn't loaded -->
+  <div *ngIf="!salesData">
+    <p aria-live="polite">Loading geothermal data...</p>
+  </div>
+
+  <div *ngIf="salesData && salesData.length === 0">
+    <p aria-live="polite">No geothermal data available.</p>
+  </div>
+
+  <div *ngIf="salesData && salesData.length > 0">
+    <p>Geothermal data loaded successfully. The chart below shows temperature and energy output for the geothermal resource.</p>
+  </div>
+
+  <!-- The div where the D3 chart will be appended -->
+  <div id="chart-container" tabindex="0" aria-labelledby="geothermal-report-heading">
+    <div id="chart" aria-label="Geothermal Energy Data Chart"></div>
+    <a href="https://www.energy.gov/eere/geothermal/geothermal-basics" target="_blank" rel="noopener noreferrer" aria-describedby="link-desc">
+      Renewable Energy Innovations
+    </a>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="reports-container">
+  <h1 id="sales-report-title">Geothermal Energy Report</h1>
+
+  <!-- Loading message for product categories -->
+  <div *ngIf="categories.length === 0 && !selectedCategory" role="status" aria-live="polite">
+    <p>Loading geothermal resources...</p>
+  </div>
+
+  <!-- If no categories are available -->
+  <div *ngIf="categories && categories.length === 0 && selectedCategory" role="alert" aria-live="assertive">
+    <p>No geothermal resources available.</p>
+  </div>
+
+  <!-- Dropdown for geothermal resources -->
+  <div *ngIf="categories && categories.length > 0">
+    <label for="category-select">Select sector percentage of geothermal consumption:</label>
+    <select
+      id="category-select"
+      [(ngModel)]="selectedCategory"
+      (change)="fetchSalesData()"
+      class="dropdown"
+      aria-label="Geothermal Resource Dropdown"
+    >
+      <option value="" disabled>Select a resource</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  </div>
+
+  <!-- Loading message for geothermal data -->
+  <div *ngIf="!salesData && selectedCategory" role="status" aria-live="polite">
+    <p>Loading geothermal data for "{{ selectedCategory }}"...</p>
+  </div>
+
+  <!-- If no geothermal data is available -->
+  <div *ngIf="salesData && salesData.length === 0 && selectedCategory" role="alert" aria-live="assertive">
+    <p>No geothermal data available for the selected resource: "{{ selectedCategory }}".</p>
+  </div>
+
+  <!-- If geothermal data is available, display it -->
+  <div *ngIf="salesData && salesData.length > 0">
+    <p>
+      Geothermal data loaded successfully. The chart below shows temperature and energy output for the selected resource: 
+      <strong>"{{ selectedCategory }}"</strong>.
+    </p>
+    <div id="chart-container">
+      <div id="chart" role="img" aria-label="Bar chart displaying geothermal data for selected resource"></div> <!-- D3 appends SVG here -->
+    </div>
+    <a href="https://www.energy.gov/eere/geothermal/geothermal-basics" target="_blank" rel="noopener noreferrer" aria-describedby="link-desc">
+      Renewable Energy Innovations
+    </a>
+  </div>
+</div>

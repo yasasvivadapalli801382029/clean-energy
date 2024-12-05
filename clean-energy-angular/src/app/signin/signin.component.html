@@ -1,0 +1,68 @@
+<div class="signin-container">
+  <mat-card class="signin-card">
+    <mat-card-title>
+      <h1 id="signin-heading">Sign In</h1>
+    </mat-card-title>
+    <form
+      [formGroup]="signinForm"
+      (ngSubmit)="signinForm.valid && submitLogin()"
+      aria-labelledby="signin-heading"
+      role="form"
+    >
+      <!-- Email Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="userEmail"
+          type="email"
+          id="email"
+          required
+          aria-required="true"
+          aria-describedby="email-error"
+        />
+        <mat-error
+          *ngIf="signinForm.get('userEmail')?.invalid && signinForm.get('userEmail')?.touched"
+          id="email-error"
+          aria-live="assertive"
+        >
+          Please enter a valid email.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Password Field -->
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          autocomplete="off"
+          matInput
+          formControlName="userPassword"
+          type="password"
+          id="password"
+          required
+          aria-required="true"
+          aria-describedby="password-error"
+        />
+        <mat-error
+          *ngIf="signinForm.get('userPassword')?.invalid && signinForm.get('userPassword')?.touched"
+          id="password-error"
+          aria-live="assertive"
+        >
+          Password is required.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <button
+  mat-raised-button
+  color="primary"
+  type="submit"
+  [disabled]="signinForm.invalid"
+  [attr.aria-disabled]="signinForm.invalid ? 'true' : null"
+>
+  Sign In
+</button>
+
+    </form>
+  </mat-card>
+</div>

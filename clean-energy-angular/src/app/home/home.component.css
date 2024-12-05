@@ -1,0 +1,35 @@
+.dashboard {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .summary-section, .technical-aspects {
+    margin-bottom: 20px;
+  }
+  h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  p, ul {
+    line-height: 1.6;
+    color: #555;
+  }
+  ul {
+    padding-left: 20px;
+  }
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
