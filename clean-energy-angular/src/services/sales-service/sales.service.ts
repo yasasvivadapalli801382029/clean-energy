@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthguardService } from '../authguard/authguard.service';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { tap } from 'rxjs';
 export class SalesService {
 
   
-  baseUrl:string = "http://localhost:8091/clean-energy-backend";
+  baseUrl:string = environment.apiUrl;
 
   constructor(private httpClient:HttpClient,private authguardService:AuthguardService) { }
 

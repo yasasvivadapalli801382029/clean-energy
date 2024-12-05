@@ -75,7 +75,11 @@ public class UserSecurityConfig {
    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedOrigin("http://localhost:80");        // For local access
+        config.addAllowedOrigin("http://localhost:8091");
+        config.addAllowedOrigin("http://localhost");           // Without port
+        config.addAllowedOrigin("http://frontend");           // Docker service name
+        config.addAllowedOrigin("http://frontend:80");        // Docker service with port
         config.setAllowedMethods(Arrays.asList("POST", "OPTIONS", "GET", "DELETE", "PUT"));
         config.setExposedHeaders(Arrays.asList("Authorization", "content-type", "Content-Disposition"));
         config.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization", "Content-Disposition"));

@@ -2,13 +2,13 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { AuthguardService } from '../authguard/authguard.service';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class UserauthenticationService {
 
-  baseUrl:string = "http://localhost:8091/clean-energy-backend";
+  baseUrl:string = environment.apiUrl;
 
   constructor(private httpClient:HttpClient,private authguardService:AuthguardService) { }
 

@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql
+    container_name: clean-energy-dbb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: clean_energy_db
+      MYSQL_CHARACTER_SET_SERVER: utf8mb4
+      MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend service (Spring Boot)
+  backend:
+    build:
+      context: ./clean-energy-spring
+      dockerfile: Dockerfile  # Adjusted path assuming Dockerfile is in backend root
+    container_name: clean-energy-backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/clean_energy_db  # Changed to service name
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8091:8091"
+    networks:
+      - app-network
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Frontend service (Angular)
+  frontend:
+    build:
+      context: ./clean-energy-angular
+      dockerfile: Dockerfile  # Adjusted path assuming Dockerfile is in frontend root
+    container_name: clean-energy-frontend
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
