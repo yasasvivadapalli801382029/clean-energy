@@ -2,8 +2,8 @@
   <button mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" *ngIf="isLoggedin()">Dashboard</button>
   <button mat-button routerLink="/signin" routerLinkActive="active-link" *ngIf="!isLoggedin()">Sign In</button>
   <button mat-button routerLink="/signup" routerLinkActive="active-link" *ngIf="!isLoggedin()">Sign Up</button>
-  <button mat-button routerLink="/summary" routerLinkActive="active-link" *ngIf="isLoggedin()">Summary</button>
-  <button mat-button routerLink="/reports" routerLinkActive="active-link" *ngIf="isLoggedin()">Reports</button>
+  <button mat-button routerLink="/summary" routerLinkActive="active-link">Summary</button>
+  <button mat-button routerLink="/reports" routerLinkActive="active-link">Reports</button>
   <button mat-button routerLinkActive="active-link" *ngIf="isLoggedin()" (click)="openLogoutConfirmationDialogbox()">Logout</button>
 </mat-toolbar>
 

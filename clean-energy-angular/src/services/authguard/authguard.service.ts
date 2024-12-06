@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthguardService {
   private isUserAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private tokenKey: string = "JWTtoken";
 
-  constructor(private router:Router,private jwtHelper:JwtHelperService) { }
+  constructor(private router:Router,private jwtHelper:JwtHelperService,private _snackBar: MatSnackBar) { }
 
 
   async canActivate(
@@ -27,12 +28,17 @@ export class AuthguardService {
 
     } else {
       console.log('redirecting to signin');
+      this.openSnackBar("Please sign in to access this page", 5);
       // User is not authenticated, redirect to the login page
       this.router.navigate(['/signin']);
       return false; // Deny access to the requested route
     }
   }
 
+
+  openSnackBar(message: string, time: number) {
+    this._snackBar.open(message, 'Close', { duration: time * 1000 });
+  }
 
   public isAuthenticated(): boolean {
     return this.isUserAuthenticated.getValue();

@@ -9,6 +9,9 @@ COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
 
+# Add execute permission to mvnw
+RUN chmod +x mvnw
+
 # Install dependencies (skip tests for faster builds)
 RUN ./mvnw dependency:go-offline
 

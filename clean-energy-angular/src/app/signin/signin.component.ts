@@ -47,8 +47,9 @@ export class SigninComponent {
       this.openSnackBar("Login Successful", 5);
       this.navigateHome();
     }, (error) => {
-      console.log(error.body);
-      this.openSnackBar("Login Failed: " + error.message, 5);
+      console.log(error.error.message);
+      // console.log(error.body);
+      this.openSnackBar("Login Failed: " + error.error.message, 5);
     });
   }
 

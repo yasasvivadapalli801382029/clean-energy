@@ -75,6 +75,7 @@ public class UserSecurityConfig {
    public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:4200");
         config.addAllowedOrigin("http://localhost:80");        // For local access
         config.addAllowedOrigin("http://localhost:8091");
         config.addAllowedOrigin("http://localhost");           // Without port

@@ -10,10 +10,10 @@ import { ReportsComponent } from './reports/reports.component';
 const routes: Routes = [
 
     {path:'',component:HomeComponent ,canActivate: [AuthguardService]},
+    {path:'dashboard',component:HomeComponent ,canActivate: [AuthguardService]},
     {path:'home',component:HomeComponent ,canActivate: [AuthguardService]},
     {path:'summary',component:SummaryComponent ,canActivate: [AuthguardService]},
     {path:'reports',component:ReportsComponent ,canActivate: [AuthguardService]},
-
     {path:'signin',component:SigninComponent},
     {path:'signup',component:SignupComponent}
 

@@ -3,12 +3,13 @@
 
   <!-- Loading message for product categories -->
   <div *ngIf="categories.length === 0 && !selectedCategory" role="status" aria-live="polite">
-    <p>Loading geothermal resources...</p>
+    <p>Loading geothermal resources, please wait...</p>
+    <p>Geothermal energy harnesses heat from beneath the Earth's surface to produce electricity and provide direct heating. This clean, renewable energy source is gaining momentum as a reliable and sustainable alternative to fossil fuels.</p>
   </div>
 
   <!-- If no categories are available -->
   <div *ngIf="categories && categories.length === 0 && selectedCategory" role="alert" aria-live="assertive">
-    <p>No geothermal resources available.</p>
+    <p>No geothermal resources available. It seems there is insufficient data for the selected category at the moment. Please try again later or select a different category.</p>
   </div>
 
   <!-- Dropdown for geothermal resources -->
@@ -24,29 +25,34 @@
       <option value="" disabled>Select a resource</option>
       <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
     </select>
+    <p>Use the dropdown menu to choose a category. This data represents geothermal energy use across different sectors, including electricity generation, heating, and industrial applications. Geothermal energy is a diverse resource and can be utilized in various ways depending on the temperature and geological conditions.</p>
   </div>
 
   <!-- Loading message for geothermal data -->
   <div *ngIf="!salesData && selectedCategory" role="status" aria-live="polite">
-    <p>Loading geothermal data for "{{ selectedCategory }}"...</p>
+    <p>Loading geothermal data for "{{ selectedCategory }}", please hold on...</p>
+    <p>We're retrieving detailed statistics for the selected resource. This includes energy output, efficiency metrics, and temperature data across different regions. Geothermal energy performance can vary based on location and technology used, which is why sector-specific data is crucial for understanding trends.</p>
   </div>
 
   <!-- If no geothermal data is available -->
   <div *ngIf="salesData && salesData.length === 0 && selectedCategory" role="alert" aria-live="assertive">
-    <p>No geothermal data available for the selected resource: "{{ selectedCategory }}".</p>
+    <p>No geothermal data available for the selected resource: "{{ selectedCategory }}". It is possible that this data is not yet available or that there has been a data retrieval issue. Please check back later or choose another resource.</p>
   </div>
 
   <!-- If geothermal data is available, display it -->
   <div *ngIf="salesData && salesData.length > 0">
     <p>
-      Geothermal data loaded successfully. The chart below shows temperature and energy output for the selected resource: 
+      Geothermal data loaded successfully. The chart below shows temperature and energy output for the selected resource:
       <strong>"{{ selectedCategory }}"</strong>.
     </p>
+    <p>The data provided here is derived from multiple geothermal plants and research sources, highlighting key metrics such as energy production, system efficiency, and operational challenges. Geothermal energy is especially valuable for regions with volcanic activity or significant tectonic movement, where heat from the Earth's core can be accessed efficiently.</p>
     <div id="chart-container">
       <div id="chart" role="img" aria-label="Bar chart displaying geothermal data for selected resource"></div> <!-- D3 appends SVG here -->
     </div>
+    <p>This chart provides a visual representation of the geothermal data, helping to identify trends in energy production over time. This information can be essential for policymakers and energy producers as they plan for the future of sustainable energy sources.</p>
     <a href="https://www.energy.gov/eere/geothermal/geothermal-basics" target="_blank" rel="noopener noreferrer" aria-describedby="link-desc">
-      Renewable Energy Innovations
+      Learn more about Geothermal Energy Innovations and its potential in the energy sector.
     </a>
+    <p>For further insights into the global progress of geothermal technologies and their future impact on renewable energy, you can visit official reports and resources on the U.S. Department of Energy’s website.</p>
   </div>
 </div>

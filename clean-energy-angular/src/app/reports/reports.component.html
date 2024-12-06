@@ -4,22 +4,29 @@
   
   <!-- Display loading message or error if data isn't loaded -->
   <div *ngIf="!salesData">
-    <p aria-live="polite">Loading geothermal data...</p>
+    <p aria-live="polite">Loading geothermal data, please wait...</p>
+    <p>Geothermal energy harnesses the heat stored beneath the Earth's surface. It is a clean, renewable energy source that can be used for both electricity generation and direct heating. We're retrieving the latest data on geothermal energy production and consumption to help you understand its current impact and potential.</p>
   </div>
 
+  <!-- If no data is available -->
   <div *ngIf="salesData && salesData.length === 0">
-    <p aria-live="polite">No geothermal data available.</p>
+    <p aria-live="polite">No geothermal data available at the moment.</p>
+    <p>It seems that we do not have the necessary data to display geothermal resource information at this time. Please check back later or explore other sections of the report.</p>
   </div>
 
+  <!-- If geothermal data is available -->
   <div *ngIf="salesData && salesData.length > 0">
-    <p>Geothermal data loaded successfully. The chart below shows temperature and energy output for the geothermal resource.</p>
+    <p>Geothermal data loaded successfully. The chart below shows temperature and energy output for the geothermal resource:</p>
+    <p>The data represents various metrics, including energy production, temperature levels, and performance trends over time. This allows you to assess how geothermal systems are performing across different regions and industries.</p>
   </div>
 
   <!-- The div where the D3 chart will be appended -->
   <div id="chart-container" tabindex="0" aria-labelledby="geothermal-report-heading">
     <div id="chart" aria-label="Geothermal Energy Data Chart"></div>
+    <p>This chart visualizes the geothermal energy data, including temperature and energy output for the selected resource. The visual format helps to identify trends and correlations between geothermal temperatures and energy production across different regions.</p>
     <a href="https://www.energy.gov/eere/geothermal/geothermal-basics" target="_blank" rel="noopener noreferrer" aria-describedby="link-desc">
-      Renewable Energy Innovations
+      Learn more about Geothermal Energy Innovations and its growing role in sustainable energy solutions.
     </a>
+    <p>For further reading, the U.S. Department of Energy provides detailed reports and research on geothermal technologies, their environmental impact, and their potential as a renewable energy source.</p>
   </div>
 </div>

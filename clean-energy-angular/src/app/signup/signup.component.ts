@@ -48,7 +48,7 @@ export class SignupComponent {
       this.openSnackBar("Signup Successful", 5);
       this.navigateToSignin();
     }, (error) => {
-      this.openSnackBar("Signup Failed: " + error.message, 5);
+      this.openSnackBar("Signup Failed: " + error.error.message, 5);
     });
   }
   
