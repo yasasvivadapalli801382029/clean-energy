@@ -1,5 +1,4 @@
 <mat-toolbar color="primary">
-  <button mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }" *ngIf="isLoggedin()">Dashboard</button>
   <button mat-button routerLink="/signin" routerLinkActive="active-link" *ngIf="!isLoggedin()">Sign In</button>
   <button mat-button routerLink="/signup" routerLinkActive="active-link" *ngIf="!isLoggedin()">Sign Up</button>
   <button mat-button routerLink="/dashboard" routerLinkActive="active-link">Dashboard</button>
