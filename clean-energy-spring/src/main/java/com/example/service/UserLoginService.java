@@ -65,8 +65,12 @@ public class UserLoginService implements UserDetailsService {
             }
 
             //fetch user details stored in db
-            UserLoginModel storedUserDetails = userLoginRepository.findByUserEmail(userLoginRequest.getUserEmail())
-                    .orElseThrow(() -> new Exception("User not found with email: " + userLoginRequest.getUserEmail()));
+            UserLoginModel storedUserDetails = userLoginRepository.findByUserEmail(userLoginRequest.getUserEmail()).orElse(null);
+            
+            if(storedUserDetails==null) {
+            
+            	storedUserDetails = userLoginRepository.findByUserName(userLoginRequest.getUserEmail()).orElseThrow(()->new Exception("Username or email doesn't exist!"));
+            }
            
             //compare user shared pwd with the one that is stored in db
             if(userLoginRequest.getUserPassword().contentEquals(storedUserDetails.getUserPassword())) {
@@ -95,10 +99,14 @@ public class UserLoginService implements UserDetailsService {
 	        }
 
 	        // Check if the user already exists
-	        Optional<UserLoginModel> storedUser = userLoginRepository.findByUserEmail(userLoginRequest.getUserEmail());
+	        Optional<UserLoginModel> storedUserEmail = userLoginRepository.findByUserEmail(userLoginRequest.getUserEmail());
+	        Optional<UserLoginModel> storedUserName = userLoginRepository.findByUserName(userLoginRequest.getUserName());
 	        
-	        if (storedUser.isPresent()) {
+	        if (storedUserEmail.isPresent()) {
 	            return ResponseEntity.badRequest().body(new APIMessageResponse("User with this email already exists"));
+	        }
+	        if(storedUserName.isPresent()) {
+	            return ResponseEntity.badRequest().body(new APIMessageResponse("User with this username already exists"));
 	        }
 
 	        // Create new user

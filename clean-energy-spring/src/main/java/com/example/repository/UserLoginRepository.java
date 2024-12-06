@@ -11,4 +11,5 @@ import com.example.model.UserLoginModel;
 public interface UserLoginRepository extends JpaRepository<UserLoginModel, Long>{
 
 	public Optional<UserLoginModel> findByUserEmail(String userEmail);
+	public Optional<UserLoginModel> findByUserName(String userName);
 }

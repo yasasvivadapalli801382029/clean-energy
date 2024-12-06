@@ -14,7 +14,7 @@ import * as CryptoJS from 'crypto-js';  // Import crypto-js for password hashing
 export class SigninComponent {
 
   signinForm: FormGroup = new FormBuilder().group({
-    userEmail: ['', [Validators.required, Validators.email]],
+    userEmail: ['', [Validators.required]],
     userPassword: ['', Validators.required]
   });
 
